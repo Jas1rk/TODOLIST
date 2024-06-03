@@ -11,12 +11,9 @@ h1 {
 
 .todo-container {
   width: 350px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
-  
+  margin: auto;
+  margin-top: 30px;
 }
 
 .input-section input {
@@ -52,11 +49,15 @@ ul li {
   color: black;
   box-shadow: 0 5px 6px #020202ad;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 ul li i {
-    text-align: right;
-    flex: 1;
+  cursor: pointer;
 }
 
-
+ul li .icons {
+  display: flex;
+  gap: 10px;
+}
