@@ -1,23 +1,14 @@
-import { useState } from 'react'
+import React, { Component } from 'react'
+import Todo from './component/totoapp/todo'
 
-
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-     
-      <h1>TodoApp</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-       
+ class App extends Component {
+  render() {
+    return (
+      <div>
+        <Todo />
       </div>
-    
-    </>
-  )
+    )
+  }
 }
 
 export default App
