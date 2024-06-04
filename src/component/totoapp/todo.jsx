@@ -7,6 +7,7 @@ class Todo extends Component {
   state = {
     input: "",
     items: [],
+    editIndex: null,
   };
 
   handleInput = (event) => {
@@ -35,12 +36,38 @@ class Todo extends Component {
     });
   };
 
+ 
+
   editItem = (index) => {
-    
+    this.setState({
+      editIndex: index,
+      input: this.state.items[index],
+    });
+  };
+
+  updateItem = () => {
+    const { editIndex, input, items } = this.state;
+
+    const updatedItems = [...items];
+    updatedItems[editIndex] = input;
+    this.setState({
+      items: updatedItems,
+      editIndex: null,
+      input: "",
+    });
+    toast.success("Item Edited successfully");
+  };
+
+  cancelEdit = () => {
+    this.setState({
+      editIndex: null,
+      input: "",
+    });
   };
 
   render() {
-    const { input, items } = this.state;
+    const { input, items, editIndex } = this.state;
+    console.log(editIndex);
     return (
       <div className="todo-container">
         <ToastContainer />
@@ -56,12 +83,34 @@ class Todo extends Component {
         <ul>
           {items.map((data, index) => (
             <li key={index}>
-              {data}
+              {editIndex === index ? (
+                <div>
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={this.handleInput}
+                  />
+                </div>
+              ) : (
+                data
+              )}
+
               <div className="icons">
-                <i
-                  className="fas fa-edit"
-                  onClick={() => this.editItem(index)}
-                ></i>
+                {editIndex === index ? (
+                  <>
+                    <i className="fas fa-check" onClick={this.updateItem}></i>
+                    <i
+                      className="fas fa-window-close"
+                      onClick={this.cancelEdit}
+                    ></i>
+                  </>
+                ) : (
+                  <i
+                    className="fas fa-edit"
+                    onClick={() => this.editItem(index)}
+                  ></i>
+                )}
+
                 <i
                   className="fas fa-trash-alt"
                   onClick={() => this.deleteItems(index)}
