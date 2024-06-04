@@ -34,6 +34,7 @@ class Todo extends Component {
     this.setState({
       items: this.state.items.filter((data, index) => index !== key),
     });
+    toast.success("Item deleted successfully");
   };
 
  
