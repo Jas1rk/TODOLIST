@@ -61,3 +61,11 @@ ul li .icons {
   display: flex;
   gap: 10px;
 }
+
+
+@media (max-width: 768px) {
+  .todo-container {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
